@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>VYBES | Loja Fitness</title>
+
+  <!-- CSS principal -->
+  <link rel="stylesheet" href="style-organizado.css" />
+
+  <!-- Ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Fontes -->
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- =========================
+       CABEÇALHO
+  ========================== -->
+  <header class="header">
+    <div class="logo">
+      <img src="img/logo.png" alt="Logo VYBES" />
+    </div>
+
+    <nav class="nav">
+      <a href="#inicio">Início</a>
+      <a href="#produtos">Produtos</a>
+      <a href="#kit">Kit Completo</a>
+      <a href="#sobre">Sobre</a>
+    </nav>
+
+    <button class="cart-button" onclick="openCart()">
+      Carrinho <span id="cart-count">0</span>
+    </button>
+  </header>
+
+  <!-- =========================
+       BANNER PRINCIPAL
+  ========================== -->
+  <section class="hero" id="inicio">
+    <img src="img/banner_principal1.png" alt="Banner VYBES" />
+  </section>
+
+  <!-- FAIXA DE BENEFÍCIOS -->
+<section class="info-bar">
+  <img src="img/info_frete.png" alt="Informações VYBES">
+</section>
+
+  <!-- =========================
+       PRODUTOS
+  ========================== -->
+  <section class="section" id="produtos">
+    <div class="section-title">
+      <span>Nova coleção</span>
+      <h2>Peças Intense</h2>
+      <p>Escolha sua cor, tamanho e adicione ao carrinho.</p>
+    </div>
+
+    <div class="product-filters">
+      <button class="filter-btn active" data-filter="todos">Todos</button>
+      <button class="filter-btn" data-filter="top">Top</button>
+      <button class="filter-btn" data-filter="legging">Leggings</button>
+      <button class="filter-btn" data-filter="shorts">Shorts</button>
+      <button class="filter-btn" data-filter="conjunto">Conjuntos</button>
+    </div>
+
+    <div class="products-grid">
+
+      <!-- PRODUTO 1 -->
+      <div class="product-card" data-category="top">
+        <div class="product-images">
+          <img id="topalca-frente" src="img/top_alça_intense_black_frente.webp" alt="Top Alça Intense frente" />
+          <img id="topalca-costas" src="img/top_alça_intense_black_costas.webp" alt="Top Alça Intense costas" />
+        </div>
+
+        <div class="product-info">
+          <h3>Top Alça Intense</h3>
+          <p class="price">R$ 59,90</p>
+
+          <label>Cor</label>
+          <div class="color-options" id="cor-top-alca">
+            <button type="button" class="color-btn active" data-color="Preto" style="background:#111;" onclick="changeImages('topalca-frente', 'img/top_alça_intense_black_frente.webp', 'topalca-costas', 'img/top_alça_intense_black_costas.webp')"></button>
+            <button type="button" class="color-btn" data-color="Pink" style="background:#ff1493;" onclick="changeImages('topalca-frente', 'img/top_alça_intense_pink_frente.webp', 'topalca-costas', 'img/top_alça_intense_pink_costas.webp')"></button>
+          </div>
+
+          <label>Tamanho</label>
+          <select id="tam-top-alca">
+            <option>P</option>
+            <option>M</option>
+            <option>G</option>
+          </select>
+
+          <label>Quantidade</label>
+            <div class="quantity-selector">
+            <button type="button" onclick="decreaseQuantity('qtd-top-alca')">-</button>
+            <input type="number" id="qtd-top-alca" value="1" min="1">
+            <button type="button" onclick="increaseQuantity('qtd-top-alca')">+</button>
+          </div>
+
+          <button onclick="addToCart('Top Alça Intense', 59.90, 'cor-top-alca', 'tam-top-alca', 'qtd-top-alca')">
+            Adicionar ao carrinho
+          </button>
+        </div>
+      </div>
+
+      <!-- PRODUTO 2 -->
+      <div class="product-card" data-category="legging">
+        <div class="product-images">
+          <img src="img/legging_intense_black.webp" alt="Legging Intense preta" />
+          <img src="img/legging_intense_pink.webp" alt="Legging Intense pink" />
+        </div>
+
+        <div class="product-info">
+          <h3>Legging Intense</h3>
+          <p class="price">R$ 89,90</p>
+
+          <label>Cor</label>
+          <div class="color-options" id="cor-legging">
+            <button type="button" class="color-btn active" data-color="Preto" style="background:#111;"></button>
+            <button type="button" class="color-btn" data-color="Pink" style="background:#ff1493;"></button>
+          </div>
+
+          <label>Tamanho</label>
+          <select id="tam-legging">
+            <option>P</option>
+            <option>M</option>
+            <option>G</option>
+          </select>
+
+          <label>Quantidade</label>
+          <div class="quantity-selector">
+            <button type="button" onclick="decreaseQuantity('qtd-legging')">-</button>
+            <input type="number" id="qtd-legging" value="1" min="1">
+            <button type="button" onclick="increaseQuantity('qtd-legging')">+</button>
+          </div>
+
+          <button onclick="addToCart('Legging Intense', 89.90, 'cor-legging', 'tam-legging', 'qtd-legging')">
+            Adicionar ao carrinho
+          </button>
+        </div>
+      </div>
+
+      <!-- PRODUTO 3 -->
+      <div class="product-card" data-category="shorts">
+        <div class="product-images">
+          <img src="img/shorts_intense_black.webp" alt="Shorts Intense preto" />
+          <img src="img/shorts_intense_pink.webp" alt="Shorts Intense pink" />
+        </div>
+
+        <div class="product-info">
+          <h3>Shorts Intense</h3>
+          <p class="price">R$ 54,90</p>
+
+          <label>Cor</label>
+          <div class="color-options" id="cor-shorts">
+            <button type="button" class="color-btn active" data-color="Preto" style="background:#111;"></button>
+            <button type="button" class="color-btn" data-color="Pink" style="background:#ff1493;"></button>
+          </div>
+
+          <label>Tamanho</label>
+          <select id="tam-shorts">
+            <option>P</option>
+            <option>M</option>
+            <option>G</option>
+          </select>
+
+          <label>Quantidade</label>
+          <div class="quantity-selector">
+            <button type="button" onclick="decreaseQuantity('qtd-shorts')">-</button>
+            <input type="number" id="qtd-shorts" value="1" min="1">
+            <button type="button" onclick="increaseQuantity('qtd-shorts')">+</button>
+          </div>
+
+          <button onclick="addToCart('Shorts Intense', 54.90, 'cor-shorts', 'tam-shorts', 'qtd-shorts')">
+            Adicionar ao carrinho
+          </button>
+        </div>
+      </div>
+
+      <!-- PRODUTO 4 -->
+      <div class="product-card" data-category="top">
+        <div class="product-images">
+          <img id="topx-frente" src="img/top_x_intense_pink_frente.webp" alt="Top X Intense frente" />
+          <img id="topx-costas" src="img/top_x_intense_pink_costas.webp" alt="Top X Intense costas" />
+        </div>
+
+        <div class="product-info">
+          <h3>Top X Intense</h3>
+          <p class="price">R$ 64,90</p>
+
+          <label>Cor</label>
+          <div class="color-options" id="cor-topx">
+            <button type="button" class="color-btn active" data-color="Pink" style="background:#ff1493;" onclick="changeImages('topx-frente', 'img/top_x_intense_pink_frente.webp', 'topx-costas', 'img/top_x_intense_pink_costas.webp')"></button>
+            <button type="button" class="color-btn" data-color="Preto" style="background:#111;" onclick="changeImages('topx-frente', 'img/top_x_intense_black_frente.webp', 'topx-costas', 'img/top_x_intense_black_costas.webp')"></button>
+          </div>
+
+          <label>Tamanho</label>
+          <select id="tam-topx">
+            <option>P</option>
+            <option>M</option>
+            <option>G</option>
+          </select>
+
+          <label>Quantidade</label>
+          <div class="quantity-selector">
+            <button type="button" onclick="decreaseQuantity('qtd-topx')">-</button>
+            <input type="number" id="qtd-topx" value="1" min="1">
+            <button type="button" onclick="increaseQuantity('qtd-topx')">+</button>
+          </div>
+
+          <button onclick="addToCart('Top X Intense', 64.90, 'cor-topx', 'tam-topx', 'qtd-topx')">
+            Adicionar ao carrinho
+          </button>
+        </div>
+      </div>
+
+      <!-- PRODUTO 5 -->
+      <div class="product-card" data-category="conjunto">
+        <div class="product-images">
+          <img id="conjuntocopa-frente" src="img/conjunto_copa_amarelo_frente.webp" alt="Conjunto Copa frente" />
+          <img id="conjuntocopa-costas" src="img/conjunto_copa_amarelo_costas.webp" alt="Conjunto Copa costas" />
+        </div>
+
+        <div class="product-info">
+          <h3>Conjunto Copa</h3>
+          <p class="price">R$ 69,90</p>
+
+          <label>Cor</label>
+          <div class="color-options" id="cor-conjunto-copa">
+            <button type="button" class="color-btn active" data-color="Amarelo" style="background:#f7d65c;" onclick="changeImages('conjuntocopa-frente', 'img/conjunto_copa_amarelo_frente.webp', 'conjuntocopa-costas', 'img/conjunto_copa_amarelo_costas.webp')"></button>
+            <button type="button" class="color-btn" data-color="Azul" style="background:#1e90ff;" onclick="changeImages('conjuntocopa-frente', 'img/conjunto_copa_azul_frente.webp', 'conjuntocopa-costas', 'img/conjunto_copa_azul_costas.webp')"></button>
+            <button type="button" class="color-btn" data-color="Verde" style="background:#2ecc71;" onclick="changeImages('conjuntocopa-frente', 'img/conjunto_copa_verde_frente.webp', 'conjuntocopa-costas', 'img/conjunto_copa_verde_costas.webp')"></button>
+          </div>
+
+          <label>Tamanho</label>
+          <select id="tam-conjunto-copa">
+            <option>P</option>
+            <option>M</option>
+            <option>G</option>
+          </select>
+
+          <label>Quantidade</label>
+          <div class="quantity-selector">
+            <button type="button" onclick="decreaseQuantity('qtd-conjunto-copa')">-</button>
+            <input type="number" id="qtd-conjunto-copa" value="1" min="1">
+            <button type="button" onclick="increaseQuantity('qtd-conjunto-copa')">+</button>
+          </div>
+
+          <button onclick="addToCart('Conjunto Copa', 69.90, 'cor-conjunto-copa', 'tam-conjunto-copa', 'qtd-conjunto-copa')">
+            Adicionar ao carrinho
+          </button>
+        </div>
+      </div>
+
+      <!-- PRODUTO 6 -->
+      <div class="product-card" data-category="conjunto">
+        <div class="product-images">
+          <img src="img/conjunto_copa3.webp" alt="Combo 2 Conjuntos Copa frente" />
+          <img src="img/conjunto_copa2.webp" alt="Combo 2 Conjuntos Copa costas" />
+        </div>
+
+        <div class="product-info">
+          <h3>2 Conjuntos Copa OFERTA</h3>
+          <p class="price">R$ 119,80</p>
+
+          <label>Cor do Top</label>
+          <div class="color-options" id="cor-top-combo-copa">
+            <button type="button" class="color-btn active" data-color="Amarelo" style="background:#f7d65c;"></button>
+            <button type="button" class="color-btn" data-color="Verde" style="background:#2ecc71;"></button>
+            <button type="button" class="color-btn" data-color="Azul" style="background:#1e90ff;"></button>
+          </div>
+
+          <label>Cor do Shorts</label>
+          <div class="color-options" id="cor-shorts-combo-copa">
+            <button type="button" class="color-btn active" data-color="Amarelo" style="background:#f7d65c;"></button>
+            <button type="button" class="color-btn" data-color="Verde" style="background:#2ecc71;"></button>
+            <button type="button" class="color-btn" data-color="Azul" style="background:#1e90ff;"></button>
+          </div>
+
+          <label>Tamanho</label>
+          <select id="tam-combo-copa">
+            <option>P</option>
+            <option>M</option>
+            <option>G</option>
+          </select>
+
+          <button onclick="addComboCopa()">Adicionar ao carrinho</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================
+       KIT COMPLETO
+  ========================== -->
+  <section class="kit-section" id="kit">
+    <div class="kit-image">
+      <img src="img/kit_completo.webp" alt="Kit Completo Intense" />
+    </div>
+
+    <div class="kit-content">
+      <span>Melhor custo-benefício</span>
+      <h2>Kit Completo Intense</h2>
+
+      <p class="kit-description">
+        Leve o look completo com Calça + Shorts + Top Alça + Top Costas X
+        e tenha mais combinações pagando menos.
+      </p>
+
+      <div class="kit-price-box">
+        <small>Kit completo por apenas</small>
+        <strong>R$ 239,90</strong>
+      </div>
+
+      <ul class="kit-benefits">
+        <li>✔ Mais peças para combinar</li>
+        <li>✔ Melhor preço comprando junto</li>
+        <li>✔ Ideal para treino e dia a dia</li>
+      </ul>
+
+      <div class="kit-options">
+        <select id="cor-kit">
+          <option>Preto</option>
+          <option>Pink</option>
+          <option>Misto</option>
+        </select>
+
+        <select id="tam-kit">
+          <option>P</option>
+          <option>M</option>
+          <option>G</option>
+        </select>
+      </div>
+
+      <button onclick="addToCart('Kit Completo Intense', 239.90, 'cor-kit', 'tam-kit')">
+        Quero aproveitar o kit
+      </button>
+    </div>
+  </section>
+
+  <!-- =========================
+       VIDEO / SOBRE A MARCA
+  ========================== -->
+  <section class="brand-video">
+    <div class="video-container">
+      <video controls poster="img/capa-video.jpg">
+        <source src="img/video_apresentacao.mp4" type="video/mp4" />
+        Seu navegador não suporta vídeo.
+      </video>
+    </div>
+
+    <div class="brand-text">
+      <h2>A essência da VYBES</h2>
+
+      <p>
+        Mais do que roupas fitness, a VYBES foi criada para valorizar sua confiança,
+        conforto e liberdade em cada movimento.
+      </p>
+
+      <div class="benefits">
+        <div class="benefit-item">
+          <h3>Modelagem Anatômica</h3>
+          <p>Desenvolvida para abraçar as curvas sem apertar.</p>
+        </div>
+
+        <div class="benefit-item">
+          <h3>Zero Transparência</h3>
+          <p>Trama de alta densidade. Segurança total no seu treino.</p>
+        </div>
+
+        <div class="benefit-item">
+          <h3>Toque de Poliamida</h3>
+          <p>Tecido tecnológico com toque gelado e secagem ultra rápida.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+       SOBRE
+  ========================== -->
+  <section class="about" id="sobre">
+    <h2>Sinta sua melhor versão</h2>
+
+    <p>
+      Junte-se à nossa comunidade: "Use VYBES e nos marque no Instagram.
+      Queremos ver você em movimento!"
+    </p>
+
+    <div class="social-links">
+      <a href="https://instagram.com/vybes.active" target="_blank" class="social-btn instagram">
+        <i class="fab fa-instagram"></i>
+        Instagram
+      </a>
+
+      <a href="https://wa.me/5514996674524?text=Olá,%20vim%20pelo%20site%20da%20VYBES!" target="_blank" class="social-btn whatsapp">
+        <i class="fab fa-whatsapp"></i>
+        WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- =========================
+     RODAPÉ
+========================= -->
+
+<footer class="footer">
+
+  <div class="footer-container">
+
+    <!-- LOGO -->
+    <div class="footer-brand">
+      <img src="img/logo.png" alt="Logo VYBES">
+
+      <p>
+        Moda fitness criada para valorizar sua confiança,
+        conforto e autenticidade em cada movimento.
+      </p>
+    </div>
+
+    <!-- LINKS -->
+    <div class="footer-links">
+      <h3>Navegação</h3>
+
+      <a href="#inicio">Início</a>
+      <a href="#produtos">Produtos</a>
+      <a href="#kit">Kit Completo</a>
+      <a href="#sobre">Sobre</a>
+    </div>
+
+    <!-- CONTATO -->
+    <div class="footer-contact">
+      <h3>Contato</h3>
+
+      <a href="https://instagram.com/vybes.active" target="_blank">
+        <i class="fab fa-instagram"></i>
+        Instagram
+      </a>
+
+      <a href="https://wa.me/5514996674524" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        WhatsApp
+      </a>
+
+      <p>Atendimento para todo Brasil</p>
+    </div>
+
+  </div>
+
+  <!-- LINHA FINAL -->
+  <div class="footer-bottom">
+    <p>
+      © 2026 VYBES — Todos os direitos reservados.
+    </p>
+  </div>
+
+</footer>
+
+  <!-- =========================
+       CARRINHO
+  ========================== -->
+  <div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+
+  <aside class="cart" id="cart">
+    <div class="cart-header">
+      <h2>Seu carrinho</h2>
+      <button onclick="closeCart()">×</button>
+    </div>
+
+    <div id="cart-items"></div>
+
+    <div class="cart-footer">
+      <h3>Total: R$ <span id="cart-total">0,00</span></h3>
+      <button onclick="finishOrder()">Finalizar pelo WhatsApp</button>
+    </div>
+  </aside>
+
+  <!-- JavaScript principal -->
+  <script src="script-organizado.js"></script>
+</body>
+</html>
